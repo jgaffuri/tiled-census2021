@@ -12,6 +12,9 @@ transform = True
 if transform:
     def tr(c):
         #print(c)
+        if c['T'] == "0": return False
+        del c['LAND_SURFACE']
+        del c['POPULATED']
         gid = c['GRD_ID'].replace("CRS3035RES1000mN", "").split('E')
         del c['GRD_ID']
         c['x'] = gid[1]
@@ -19,6 +22,8 @@ if transform:
         if c['CONFIDENTIALSTATUS'] == "": c['CONFIDENTIALSTATUS'] = 0
         return c
     gridtiler.grid_transformation("/home/juju/geodata/census/2021/ESTAT_Census_2021_V2.csv", tr, "/home/juju/geodata/census/tmp/1000.csv")
+
+
 
 
 
