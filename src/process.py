@@ -6,12 +6,17 @@ import os
 transform = True
 
 
-#fid,GRD_ID,T,M,F,Y_LT15,Y_1564,Y_GE65,EMP,NAT,EU_OTH,OTH,SAME,CHG_IN,CHG_OUT,LAND_SURFACE,POPULATED,CONFIDENTIALSTATUS
+#GRD_ID,T,M,F,Y_LT15,Y_1564,Y_GE65,EMP,NAT,EU_OTH,OTH,SAME,CHG_IN,CHG_OUT,LAND_SURFACE,POPULATED,CONFIDENTIALSTATUS
 #transform
 
 if transform:
     def tr(c):
-        del c['fid']
+        #print(c)
+        gid = c['GRD_ID'].replace("CRS3035RES1000mN", "").split('E')
+        del c['GRD_ID']
+        c['x'] = gid[1]
+        c['y'] = gid[0]
+        if c['CONFIDENTIALSTATUS'] == "": c['CONFIDENTIALSTATUS'] = 0
         return c
     gridtiler.grid_transformation("/home/juju/geodata/census/2021/ESTAT_Census_2021_V2.csv", tr, "/home/juju/geodata/census/tmp/1000.csv")
 
