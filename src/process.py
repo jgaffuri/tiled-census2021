@@ -49,16 +49,15 @@ if tiling:
         print("tiling for resolution", resolution)
 
         #create output folder
-        out_folder = 'pub/gridviz/leg2024/T1_bv/' + str(resolution)
-        if not os.path.exists(folder): os.makedirs(folder)
+        out_folder = 'pub/v2/parquet/' + str(resolution)
+        if not os.path.exists(out_folder): os.makedirs(out_folder)
 
         gridtiler.grid_tiling(
-            folder+str(resolution)+".csv",
+            tmpfolder+str(resolution)+".csv",
             out_folder,
             resolution,
             tile_size_cell = 256,
             x_origin = 0,
             y_origin = 0,
-            #crs = "EPSG:3035",
             format = "parquet"
         )
