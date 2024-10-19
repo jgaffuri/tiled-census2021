@@ -7,7 +7,8 @@ import os
 tmpfolder = "/home/juju/geodata/census/tmp/"
 
 transform = False
-aggregate = True
+aggregate = False
+tiling = True
 
 
 #GRD_ID,T,M,F,Y_LT15,Y_1564,Y_GE65,EMP,NAT,EU_OTH,OTH,SAME,CHG_IN,CHG_OUT,LAND_SURFACE,POPULATED,CONFIDENTIALSTATUS
@@ -42,28 +43,9 @@ if aggregate:
 
 
 
-
-exit()
-
-format_join = False
-tiling = False
-
-folder = "/home/juju/geodata/elections_fr/leg2024/"
-
-
-
-print(datetime.now(), "clean")
-for resolution in [100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000]:
-    f = folder+str(resolution)+".csv"
-    df = pd.read_csv(f)
-    df.loc[df['nb_bv'] > 1, ['codeDepartement', 'nomDepartement', 'codeCirconscription', 'codeCommune', 'nomCirconscription', 'nomCommune', 'codeBureauVote']] = None
-    df.to_csv(f, index=False)
-
-
-
 #tiling
 if tiling:
-    for resolution in [100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000]:
+    for resolution in [1000, 2000, 5000, 10000, 20000, 50000, 100000]:
         print("tiling for resolution", resolution)
 
         #create output folder
