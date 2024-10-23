@@ -4,7 +4,8 @@ from datetime import datetime
 import os
 
 
-tmpfolder = "/home/juju/geodata/census/tmp/"
+aggregated_folder = "/home/juju/geodata/census/2021/aggregated/"
+
 
 transform = False
 aggregate = False
@@ -26,7 +27,7 @@ if transform:
         c['y'] = gid[0]
         if c['CONFIDENTIALSTATUS'] == "": c['CONFIDENTIALSTATUS'] = 0
         return c
-    gridtiler.grid_transformation("/home/juju/geodata/census/2021/ESTAT_Census_2021_V2.csv", tr, tmpfolder+"1000.csv")
+    gridtiler.grid_transformation("/home/juju/geodata/census/2021/ESTAT_Census_2021_V2.csv", tr, aggregated_folder+"1000.csv")
 
 
 
@@ -35,10 +36,10 @@ if aggregate:
 
     for a in [2,5,10]:
         print(datetime.now(), "aggregation to", a*1000, "m")
-        gridtiler.grid_aggregation(input_file=tmpfolder+"1000.csv", resolution=1000, output_file=tmpfolder+str(a*1000)+".csv", a=a)
+        gridtiler.grid_aggregation(input_file=aggregated_folder+"1000.csv", resolution=1000, output_file=aggregated_folder+str(a*1000)+".csv", a=a)
     for a in [2,5,10]:
         print(datetime.now(), "aggregation to", a*10000, "m")
-        gridtiler.grid_aggregation(input_file=tmpfolder+"10000.csv", resolution=10000, output_file=tmpfolder+str(a*10000)+".csv", a=a)
+        gridtiler.grid_aggregation(input_file=aggregated_folder+"10000.csv", resolution=10000, output_file=aggregated_folder+str(a*10000)+".csv", a=a)
 
 
 
@@ -53,7 +54,7 @@ if tiling:
         if not os.path.exists(out_folder): os.makedirs(out_folder)
 
         gridtiler.grid_tiling(
-            tmpfolder+str(resolution)+".csv",
+            aggregated_folder+str(resolution)+".csv",
             out_folder,
             resolution,
             tile_size_cell = 256,
