@@ -8,9 +8,9 @@ aggregated_folder = "/home/juju/Bureau/aggregated/"
 if not os.path.exists(aggregated_folder): os.makedirs(aggregated_folder)
 
 
-transform = True
+transform = False
 aggregate = False
-tiling = False
+tiling = True
 
 
 #GRD_ID,T,M,F,Y_LT15,Y_1564,Y_GE65,EMP,NAT,EU_OTH,OTH,SAME,CHG_IN,CHG_OUT,LAND_SURFACE,POPULATED,CONFIDENTIALSTATUS
@@ -49,7 +49,7 @@ if tiling:
         print("tiling for resolution", resolution)
 
         #create output folder
-        out_folder = 'pub/v2/parquet/' + str(resolution)
+        out_folder = 'pub/v2/parquet_total/' + str(resolution)
         if not os.path.exists(out_folder): os.makedirs(out_folder)
 
         gridtiler.grid_tiling(
