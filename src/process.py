@@ -8,8 +8,8 @@ aggregated_folder = "/home/juju/geodata/census/2021/aggregated/"
 
 
 transform = False
-aggregate = False
-tiling = True
+aggregate = True
+tiling = False
 
 
 #GRD_ID,T,M,F,Y_LT15,Y_1564,Y_GE65,EMP,NAT,EU_OTH,OTH,SAME,CHG_IN,CHG_OUT,LAND_SURFACE,POPULATED,CONFIDENTIALSTATUS
@@ -25,8 +25,14 @@ if transform:
         del c['GRD_ID']
         c['x'] = gid[1]
         c['y'] = gid[0]
+
+        if c['EMP'] == "": c['EMP'] = "NA"
+
         if c['CONFIDENTIALSTATUS'] == "": c['CONFIDENTIALSTATUS'] = 0
-        return c
+
+        #for k, v in c.items():
+        #    if v == "" or v == None: print(k)
+
     gridtiler.grid_transformation("/home/juju/geodata/census/2021/ESTAT_Census_2021_V2.csv", tr, aggregated_folder+"1000.csv")
 
 
