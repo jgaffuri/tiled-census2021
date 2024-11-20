@@ -41,15 +41,10 @@ if transform:
 if aggregate:
 
     def aggregation_sum_EMP(values, _=0):
-        na_found = False
         sum = 0
         for value in values:
-            if value == "" or value == None: continue
-            if value == "NA":
-                na_found = True
-                continue
+            if value == "NA": return "NA"
             sum += float(value)
-        if sum == 0 and na_found: return "NA"
         return sum
     aggregation_fun = { 'EMP':aggregation_sum_EMP }
 
