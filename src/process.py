@@ -10,7 +10,7 @@ aggregated_folder = "/home/juju/geodata/census/2021/aggregated/"
 transform = True
 aggregate = True
 tiling = True
-
+make_csv = True
 
 #GRD_ID,T,M,F,Y_LT15,Y_1564,Y_GE65,EMP,NAT,EU_OTH,OTH,SAME,CHG_IN,CHG_OUT,LAND_SURFACE,POPULATED,CONFIDENTIALSTATUS
 #transform
@@ -76,3 +76,17 @@ if tiling:
             y_origin = 0,
             format = "parquet"
         )
+
+        if make_csv:
+
+            out_folder = 'pub/v2/csv/' + str(resolution)
+            if not os.path.exists(out_folder): os.makedirs(out_folder)
+            gridtiler.grid_tiling(
+                aggregated_folder+str(resolution)+".csv",
+                out_folder,
+                resolution,
+                tile_size_cell = 256,
+                x_origin = 0,
+                y_origin = 0,
+                format = "parquet"
+            )
