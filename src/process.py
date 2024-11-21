@@ -26,7 +26,7 @@ if transform:
         c['x'] = gid[1]
         c['y'] = gid[0]
 
-        if c['EMP'] == "": c['EMP'] = "NA"
+        if c['EMP'] == "": c['EMP'] = None
 
         if c['CONFIDENTIALSTATUS'] == "": c['CONFIDENTIALSTATUS'] = 0
 
@@ -43,7 +43,7 @@ if aggregate:
     def aggregation_sum_EMP(values, _=0):
         sum = 0
         for value in values:
-            if value == "NA": return "NA"
+            if value == None: return None
             sum += float(value)
         return sum
     aggregation_fun = { 'EMP':aggregation_sum_EMP }
@@ -88,5 +88,5 @@ if tiling:
                 tile_size_cell = 256,
                 x_origin = 0,
                 y_origin = 0,
-                format = "parquet"
+                format = "csv"
             )
