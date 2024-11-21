@@ -7,10 +7,10 @@ import os
 aggregated_folder = "/home/juju/geodata/census/2021/aggregated/"
 
 
-transform = True
-aggregate = True
+transform = False
+aggregate = False
 tiling = True
-make_csv = True
+make_csv = False
 
 #GRD_ID,T,M,F,Y_LT15,Y_1564,Y_GE65,EMP,NAT,EU_OTH,OTH,SAME,CHG_IN,CHG_OUT,LAND_SURFACE,POPULATED,CONFIDENTIALSTATUS
 #transform
@@ -61,7 +61,7 @@ if aggregate:
 #tiling
 if tiling:
     for resolution in [1000, 2000, 5000, 10000, 20000, 50000, 100000]:
-        print("tiling for resolution", resolution)
+        print(datetime.now(), "tiling for resolution", resolution)
 
         #create output folder
         out_folder = 'pub/v2/parquet/' + str(resolution)
