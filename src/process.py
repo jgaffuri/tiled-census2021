@@ -16,16 +16,22 @@ make_csv = False
 
 if transform:
     def tr(c):
-        #print(c)
+
+        #skip non populated cells
         if c['T'] == "0": return False
+
+        #remove useless information
         del c['LAND_SURFACE']
         del c['POPULATED']
+
+        #extrac x,y
         gid = c['GRD_ID'].replace("CRS3035RES1000mN", "").split('E')
         del c['GRD_ID']
         c['x'] = gid[1]
         c['y'] = gid[0]
 
-        #mark data as not available
+        #fix: mark data as not available
+        #not available data is marked as ""
         if( c['M'] == "0" and c['F'] == "0" ):
             c['M'] = ""
             c['F'] = ""
@@ -42,10 +48,8 @@ if transform:
             c['CHG_IN'] = ""
             c['CHG_OUT'] = ""
 
+        #ensures confidentialstatus is 0 or 1
         if c['CONFIDENTIALSTATUS'] == "": c['CONFIDENTIALSTATUS'] = 0
-
-        #for k, v in c.items():
-        #    if v == "" or v == None: print(k)
 
     gridtiler.grid_transformation("/home/juju/geodata/census/2021/ESTAT_Census_2021_V2.csv", tr, aggregated_folder+"1000.csv")
 
@@ -54,6 +58,7 @@ if transform:
 #aggregation
 if aggregate:
 
+    #the aggregation function:
     def aggregation_sum_NA(values, _=0):
         sum = 0
         for value in values:
