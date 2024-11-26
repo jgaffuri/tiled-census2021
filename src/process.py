@@ -6,8 +6,8 @@ import os
 aggregated_folder = "/home/juju/geodata/census/2021/aggregated/"
 
 
-transform = False
-aggregate = False
+transform = True
+aggregate = True
 tiling = True
 make_csv = False
 
