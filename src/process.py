@@ -25,6 +25,23 @@ if transform:
         c['x'] = gid[1]
         c['y'] = gid[0]
 
+        if( c['M'] == "0" and c['F'] == "0" ):
+            c['M'] = ""
+            c['F'] = ""
+        if( c['Y_LT15'] == "0" and c['Y_1564'] == "0" and c['Y_GE65'] == "0" ):
+            c['Y_LT15'] = ""
+            c['Y_1564'] = ""
+            c['Y_GE65'] = ""
+        if( c['NAT'] == "0" and c['EU_OTH'] == "0" and c['OTH'] == "0" ):
+            c['NAT'] = ""
+            c['EU_OTH'] = ""
+            c['OTH'] = ""
+        if( c['SAME'] == "0" and c['CHG_IN'] == "0" and c['CHG_OUT'] == "0" ):
+            c['SAME'] = ""
+            c['CHG_IN'] = ""
+            c['CHG_OUT'] = ""
+
+
         #if c['EMP'] == "": c['EMP'] = None
 
         if c['CONFIDENTIALSTATUS'] == "": c['CONFIDENTIALSTATUS'] = 0
