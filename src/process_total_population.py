@@ -1,4 +1,3 @@
-import pandas as pd
 from pygridmap import gridtiler
 from datetime import datetime
 import os
