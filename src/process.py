@@ -25,6 +25,7 @@ if transform:
         c['x'] = gid[1]
         c['y'] = gid[0]
 
+        #mark data as not available
         if( c['M'] == "0" and c['F'] == "0" ):
             c['M'] = ""
             c['F'] = ""
@@ -41,9 +42,6 @@ if transform:
             c['CHG_IN'] = ""
             c['CHG_OUT'] = ""
 
-
-        #if c['EMP'] == "": c['EMP'] = None
-
         if c['CONFIDENTIALSTATUS'] == "": c['CONFIDENTIALSTATUS'] = 0
 
         #for k, v in c.items():
@@ -56,13 +54,15 @@ if transform:
 #aggregation
 if aggregate:
 
-    def aggregation_sum_EMP(values, _=0):
+    def aggregation_sum_NA(values, _=0):
         sum = 0
         for value in values:
             if value == "": return ""
             sum += float(value)
         return sum
-    aggregation_fun = { 'EMP':aggregation_sum_EMP }
+    aggregation_fun = {}
+    for code in ["M","F","Y_LT15","Y_1564","Y_GE65","EMP","NAT","EU_OTH","OTH,SAME","CHG_IN","CHG_OUT"]: aggregation_fun[code] = aggregation_sum_NA
+
 
     for a in [2,5,10]:
         print(datetime.now(), "aggregation to", a*1000, "m")
