@@ -61,7 +61,7 @@ if aggregate:
             sum += float(value)
         return sum
     aggregation_fun = {}
-    for code in ["M","F","Y_LT15","Y_1564","Y_GE65","EMP","NAT","EU_OTH","OTH,SAME","CHG_IN","CHG_OUT"]: aggregation_fun[code] = aggregation_sum_NA
+    for code in ["M","F","Y_LT15","Y_1564","Y_GE65","EMP","NAT","EU_OTH","OTH","SAME","CHG_IN","CHG_OUT"]: aggregation_fun[code] = aggregation_sum_NA
 
 
     for a in [2,5,10]:
