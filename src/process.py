@@ -56,6 +56,7 @@ if transform:
         #if c['CONFIDENTIALSTATUS'] == "": c['CONFIDENTIALSTATUS'] = 0
         for cc in [ "T_CI", "M_CI", "F_CI", "Y_LT15_CI", "Y_1564_CI", "Y_GE65_CI", "EMP_CI", "NAT_CI", "EU_OTH_CI", "OTH_CI", "SAME_CI", "CHG_IN_CI", "CHG_OUT_CI" ]:
             if c[cc] == "": c[cc] = 0
+            elif c[cc] == "0": c[cc] = 0
             elif c[cc] == "-9999": c[cc] = 1
             else: print(c[cc])
 
