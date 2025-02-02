@@ -7,7 +7,7 @@ aggregated_folder = "/home/juju/geodata/census/2021/aggregated/"
 
 
 transform = True
-aggregate = True
+aggregate = False
 tiling = False
 
 # fid,GRD_ID,T,M,F,Y_LT15,Y_1564,Y_GE65,EMP,NAT,EU_OTH,OTH,SAME,CHG_IN,CHG_OUT,LAND_SURFACE,POPULATED,COUNT,
@@ -60,6 +60,13 @@ if transform:
             elif c[cc] == "-9999": c[cc] = 1
             elif c[cc] == "-9986": c[cc] = 1
             else: print(c[cc])
+
+        #check negative values
+        for code in ["T", "M","F","Y_LT15","Y_1564","Y_GE65","EMP","NAT","EU_OTH","OTH","SAME","CHG_IN","CHG_OUT",
+        "T_CI", "M_CI", "F_CI", "Y_LT15_CI", "Y_1564_CI", "Y_GE65_CI", "EMP_CI", "NAT_CI", "EU_OTH_CI", "OTH_CI", "SAME_CI", "CHG_IN_CI", "CHG_OUT_CI"]:
+            if c[code]<0: print(code, c[code])
+
+
 
     gridtiler.grid_transformation("/home/juju/geodata/census/2021/ESTAT_Census_2021_V2.csv", tr, aggregated_folder+"1000.csv")
 
