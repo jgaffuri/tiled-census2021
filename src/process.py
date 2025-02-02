@@ -7,7 +7,7 @@ aggregated_folder = "/home/juju/geodata/census/2021/aggregated/"
 
 
 transform = True
-aggregate = False
+aggregate = True
 tiling = False
 
 # fid,GRD_ID,T,M,F,Y_LT15,Y_1564,Y_GE65,EMP,NAT,EU_OTH,OTH,SAME,CHG_IN,CHG_OUT,LAND_SURFACE,POPULATED,COUNT,
