@@ -64,7 +64,8 @@ if transform:
         #check negative values
         for code in ["T", "M","F","Y_LT15","Y_1564","Y_GE65","EMP","NAT","EU_OTH","OTH","SAME","CHG_IN","CHG_OUT",
         "T_CI", "M_CI", "F_CI", "Y_LT15_CI", "Y_1564_CI", "Y_GE65_CI", "EMP_CI", "NAT_CI", "EU_OTH_CI", "OTH_CI", "SAME_CI", "CHG_IN_CI", "CHG_OUT_CI"]:
-            if c[code]<0: print(code, c[code])
+            if c[code]=="": continue
+            if int(c[code])<0: print(code, c[code])
 
 
 
