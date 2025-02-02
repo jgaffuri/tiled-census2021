@@ -61,8 +61,6 @@ if transform:
             elif c[cc] == "-9986": c[cc] = 1
             else: print(c[cc])
 
-
-
     gridtiler.grid_transformation("/home/juju/geodata/census/2021/ESTAT_Census_2021_V2.csv", tr, aggregated_folder+"1000.csv")
 
 
