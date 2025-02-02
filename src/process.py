@@ -63,14 +63,16 @@ if aggregate:
 
     # the aggregation function:
     # as soon as one value is NA, then the aggregated is NA
+    '''''
     def aggregation_sum_NA(values, _=0):
         sum = 0
         for value in values:
             if value == "": return ""
             sum += float(value)
         return sum
+    '''''
     aggregation_fun = {}
-    for code in ["M","F","Y_LT15","Y_1564","Y_GE65","EMP","NAT","EU_OTH","OTH","SAME","CHG_IN","CHG_OUT"]: aggregation_fun[code] = aggregation_sum_NA
+    #for code in ["M","F","Y_LT15","Y_1564","Y_GE65","EMP","NAT","EU_OTH","OTH","SAME","CHG_IN","CHG_OUT"]: aggregation_fun[code] = aggregation_sum_NA
 
     # launch aggregations
     for a in [2,5,10]:
