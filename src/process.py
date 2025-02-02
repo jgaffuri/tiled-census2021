@@ -58,6 +58,7 @@ if transform:
             if c[cc] == "": c[cc] = 0
             elif c[cc] == "0": c[cc] = 0
             elif c[cc] == "-9999": c[cc] = 1
+            elif c[cc] == "-9986": c[cc] = 1
             else: print(c[cc])
 
 
