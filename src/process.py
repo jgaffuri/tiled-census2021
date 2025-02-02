@@ -36,6 +36,10 @@ if transform:
 
         # fix: mark data as not available
         # not available data is marked as ""
+        for code in ["T", "M","F","Y_LT15","Y_1564","Y_GE65","EMP","NAT","EU_OTH","OTH","SAME","CHG_IN","CHG_OUT"]:
+            if c[code] == "": continue
+            if int(c[code]) == -9999: c[code] = ""
+        '''''
         if( c['M'] == "0" and c['F'] == "0" ):
             c['M'] = ""
             c['F'] = ""
@@ -51,6 +55,7 @@ if transform:
             c['SAME'] = ""
             c['CHG_IN'] = ""
             c['CHG_OUT'] = ""
+            '''''
 
         # ensures confidentialstatus is 0 or 1
         #if c['CONFIDENTIALSTATUS'] == "": c['CONFIDENTIALSTATUS'] = 0
@@ -64,7 +69,7 @@ if transform:
         #check negative values
         for code in ["T", "M","F","Y_LT15","Y_1564","Y_GE65","EMP","NAT","EU_OTH","OTH","SAME","CHG_IN","CHG_OUT",
         "T_CI", "M_CI", "F_CI", "Y_LT15_CI", "Y_1564_CI", "Y_GE65_CI", "EMP_CI", "NAT_CI", "EU_OTH_CI", "OTH_CI", "SAME_CI", "CHG_IN_CI", "CHG_OUT_CI"]:
-            if c[code]=="": continue
+            if int(c[code]) == -9999: c[code] = ""
             if int(c[code])<0: print(code, c[code])
 
 
