@@ -34,31 +34,12 @@ if transform:
         c['x'] = gid[1]
         c['y'] = gid[0]
 
-        # fix: mark data as not available
         # not available data is marked as ""
         for code in ["T", "M","F","Y_LT15","Y_1564","Y_GE65","EMP","NAT","EU_OTH","OTH","SAME","CHG_IN","CHG_OUT"]:
-            if c[code] == "": continue
+            if c[code] == '': continue
             if int(c[code]) == -9999: c[code] = ""
-        '''''
-        if( c['M'] == "0" and c['F'] == "0" ):
-            c['M'] = ""
-            c['F'] = ""
-        if( c['Y_LT15'] == "0" and c['Y_1564'] == "0" and c['Y_GE65'] == "0" ):
-            c['Y_LT15'] = ""
-            c['Y_1564'] = ""
-            c['Y_GE65'] = ""
-        if( c['NAT'] == "0" and c['EU_OTH'] == "0" and c['OTH'] == "0" ):
-            c['NAT'] = ""
-            c['EU_OTH'] = ""
-            c['OTH'] = ""
-        if( c['SAME'] == "0" and c['CHG_IN'] == "0" and c['CHG_OUT'] == "0" ):
-            c['SAME'] = ""
-            c['CHG_IN'] = ""
-            c['CHG_OUT'] = ""
-            '''''
 
         # ensures confidentialstatus is 0 or 1
-        #if c['CONFIDENTIALSTATUS'] == "": c['CONFIDENTIALSTATUS'] = 0
         for cc in [ "T_CI", "M_CI", "F_CI", "Y_LT15_CI", "Y_1564_CI", "Y_GE65_CI", "EMP_CI", "NAT_CI", "EU_OTH_CI", "OTH_CI", "SAME_CI", "CHG_IN_CI", "CHG_OUT_CI" ]:
             if c[cc] == "": c[cc] = 0
             elif c[cc] == "0": c[cc] = 0
@@ -69,10 +50,8 @@ if transform:
         #check negative values
         for code in ["T", "M","F","Y_LT15","Y_1564","Y_GE65","EMP","NAT","EU_OTH","OTH","SAME","CHG_IN","CHG_OUT",
         "T_CI", "M_CI", "F_CI", "Y_LT15_CI", "Y_1564_CI", "Y_GE65_CI", "EMP_CI", "NAT_CI", "EU_OTH_CI", "OTH_CI", "SAME_CI", "CHG_IN_CI", "CHG_OUT_CI"]:
-            if int(c[code]) == -9999: c[code] = ""
+            if c[code] == "": continue
             if int(c[code])<0: print(code, c[code])
-
-
 
     gridtiler.grid_transformation("/home/juju/geodata/census/2021/ESTAT_Census_2021_V2.csv", tr, aggregated_folder+"1000.csv")
 
