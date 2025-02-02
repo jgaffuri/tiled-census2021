@@ -7,8 +7,11 @@ aggregated_folder = "/home/juju/geodata/census/2021/aggregated/"
 
 
 transform = True
-aggregate = True
-tiling = True
+aggregate = False
+tiling = False
+
+# fid,GRD_ID,T,M,F,Y_LT15,Y_1564,Y_GE65,EMP,NAT,EU_OTH,OTH,SAME,CHG_IN,CHG_OUT,LAND_SURFACE,POPULATED,COUNT,
+# T_CI,M_CI,F_CI,Y_LT15_CI,Y_1564_CI,Y_GE65_CI,EMP_CI,NAT_CI,EU_OTH_CI,OTH_CI,SAME_CI,CHG_IN_CI,CHG_OUT_CI
 
 #GRD_ID,T,M,F,Y_LT15,Y_1564,Y_GE65,EMP,NAT,EU_OTH,OTH,SAME,CHG_IN,CHG_OUT,LAND_SURFACE,POPULATED,CONFIDENTIALSTATUS
 #transform
@@ -20,8 +23,10 @@ if transform:
         if c['T'] == "0": return False
 
         # remove useless information
-        del c['LAND_SURFACE']
+        del c['fid']
+        #del c['LAND_SURFACE']
         del c['POPULATED']
+        del c['COUNT']
 
         #extrac x,y
         gid = c['GRD_ID'].replace("CRS3035RES1000mN", "").split('E')
@@ -48,7 +53,13 @@ if transform:
             c['CHG_OUT'] = ""
 
         # ensures confidentialstatus is 0 or 1
-        if c['CONFIDENTIALSTATUS'] == "": c['CONFIDENTIALSTATUS'] = 0
+        #if c['CONFIDENTIALSTATUS'] == "": c['CONFIDENTIALSTATUS'] = 0
+        for cc in [ "T_CI", "M_CI", "F_CI", "Y_LT15_CI", "Y_1564_CI", "Y_GE65_CI", "EMP_CI", "NAT_CI", "EU_OTH_CI", "OTH_CI", "SAME_CI", "CHG_IN_CI", "CHG_OUT_CI" ]:
+            if c[cc] == "": c[cc] = 0
+            elif c[cc] == "-9999": c[cc] = 1
+            else: print(c[cc])
+
+
 
     gridtiler.grid_transformation("/home/juju/geodata/census/2021/ESTAT_Census_2021_V2.csv", tr, aggregated_folder+"1000.csv")
 
