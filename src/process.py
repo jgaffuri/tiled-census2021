@@ -6,9 +6,9 @@ import os
 aggregated_folder = "/home/juju/geodata/census/2021/aggregated/"
 
 
-transform = True
-aggregate = True
-tiling = False
+transform = False
+aggregate = False
+tiling = True
 
 # fid,GRD_ID,T,M,F,Y_LT15,Y_1564,Y_GE65,EMP,NAT,EU_OTH,OTH,SAME,CHG_IN,CHG_OUT,LAND_SURFACE,POPULATED,COUNT,
 # T_CI,M_CI,F_CI,Y_LT15_CI,Y_1564_CI,Y_GE65_CI,EMP_CI,NAT_CI,EU_OTH_CI,OTH_CI,SAME_CI,CHG_IN_CI,CHG_OUT_CI
