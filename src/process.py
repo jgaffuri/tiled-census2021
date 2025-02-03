@@ -54,6 +54,9 @@ if transform:
         "T_CI", "M_CI", "F_CI", "Y_LT15_CI", "Y_1564_CI", "Y_GE65_CI", "EMP_CI", "NAT_CI", "EU_OTH_CI", "OTH_CI", "SAME_CI", "CHG_IN_CI", "CHG_OUT_CI"]:
             if int(c[code])<0: print(code, c[code])
 
+        #initialise nb - to count the number of cells aggregated
+        c['nb'] = 1
+
     gridtiler.grid_transformation("/home/juju/geodata/census/2021/ESTAT_Census_2021_V2.csv", tr, aggregated_folder+"1000.csv")
 
 
