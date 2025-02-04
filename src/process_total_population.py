@@ -7,8 +7,8 @@ aggregated_folder = "/home/juju/Bureau/aggregated/"
 if not os.path.exists(aggregated_folder): os.makedirs(aggregated_folder)
 
 
-transform = False
-aggregate = False
+transform = True
+aggregate = True
 tiling = True
 
 
