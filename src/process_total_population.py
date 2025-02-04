@@ -25,6 +25,8 @@ if transform:
 
         gid = c['GRD_ID'].replace("CRS3035RES1000mN", "").split('E')
 
+        if pop == "0" and ci == "-9999": print("ok!")
+
         c.clear()
         c['T'] = pop
         c['x'] = gid[1]
