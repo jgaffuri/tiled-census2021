@@ -28,9 +28,14 @@ if transform:
         c['T'] = pop
         c['x'] = gid[1]
         c['y'] = gid[0]
+
+        #confidentiality
         if ci == "": c['T_CI'] = 0
         elif ci == "-9999": c['T_CI'] = 1
         else: print("Unexpected T_CI: ", ci)
+
+        #initialise nb - to count the number of cells aggregated
+        c['nb'] = 1
 
     gridtiler.grid_transformation("/home/juju/geodata/census/2021/ESTAT_Census_2021_V2.csv", tr, aggregated_folder+"1000.csv")
 
