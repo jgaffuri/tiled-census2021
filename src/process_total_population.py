@@ -18,6 +18,8 @@ tiling = True
 
 if transform:
     def tr(c):
+
+        # skip non populated non confidential cells
         pop = c['T']
         ci = c['T_CI']
         if pop == "0" and ci != "-9999": return False
