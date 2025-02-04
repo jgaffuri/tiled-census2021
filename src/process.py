@@ -5,7 +5,6 @@ import os
 
 aggregated_folder = "/home/juju/geodata/census/2021/aggregated/"
 
-
 transform = True
 aggregate = True
 tiling = True
