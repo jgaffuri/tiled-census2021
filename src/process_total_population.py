@@ -20,11 +20,16 @@ if transform:
         pop = c['T']
         if pop == "0": return False
         gid = c['GRD_ID'].replace("CRS3035RES1000mN", "").split('E')
+        ci = c['T_CI']
 
         c.clear()
         c['T'] = pop
         c['x'] = gid[1]
         c['y'] = gid[0]
+        if ci == None: c['T_CI'] = 0
+        elif ci == "-9999": c['T_CI'] = 1
+        else: print("Unexpected T_CI: ", ci)
+
     gridtiler.grid_transformation("/home/juju/geodata/census/2021/ESTAT_Census_2021_V2.csv", tr, aggregated_folder+"1000.csv")
 
 
