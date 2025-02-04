@@ -20,9 +20,10 @@ tiling = True
 if transform:
     def tr(c):
         pop = c['T']
-        if pop == "0": return False
-        gid = c['GRD_ID'].replace("CRS3035RES1000mN", "").split('E')
         ci = c['T_CI']
+        if pop == "0" and ci != "-9999": return False
+
+        gid = c['GRD_ID'].replace("CRS3035RES1000mN", "").split('E')
 
         c.clear()
         c['T'] = pop
