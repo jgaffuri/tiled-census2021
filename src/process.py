@@ -20,7 +20,7 @@ if transform:
     def tr(c):
 
         # skip non populated cells
-        if c['T'] == "0": return False
+        if c['T'] == "0" and c['T_CI'] != "-9999": return False
 
         # remove useless information
         del c['fid']
