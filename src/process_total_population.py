@@ -22,17 +22,16 @@ if transform:
         pop = c['T']
         ci = c['T_CI']
         if pop == "0" and ci != "-9999": return False
+        #if pop == "0" and ci == "-9999": print("ok!")
 
         gid = c['GRD_ID'].replace("CRS3035RES1000mN", "").split('E')
-
-        if pop == "0" and ci == "-9999": print("ok!")
 
         c.clear()
         c['T'] = pop
         c['x'] = gid[1]
         c['y'] = gid[0]
 
-        #confidentiality
+        #set confidentiality to 0 or 1
         if ci == "": c['T_CI'] = 0
         elif ci == "-9999": c['T_CI'] = 1
         else: print("Unexpected T_CI: ", ci)
