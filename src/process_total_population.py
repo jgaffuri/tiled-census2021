@@ -28,7 +28,7 @@ if transform:
         c['T'] = pop
         c['x'] = gid[1]
         c['y'] = gid[0]
-        if ci == None: c['T_CI'] = 0
+        if ci == "": c['T_CI'] = 0
         elif ci == "-9999": c['T_CI'] = 1
         else: print("Unexpected T_CI: ", ci)
 
