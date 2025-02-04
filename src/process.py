@@ -4,15 +4,17 @@ import os
 
 
 aggregated_folder = "/home/juju/geodata/census/2021/aggregated/"
+if not os.path.exists(aggregated_folder): os.makedirs(aggregated_folder)
 
 transform = True
 aggregate = True
 tiling = True
 
+
 # fid,GRD_ID,T,M,F,Y_LT15,Y_1564,Y_GE65,EMP,NAT,EU_OTH,OTH,SAME,CHG_IN,CHG_OUT,LAND_SURFACE,POPULATED,COUNT,
 # T_CI,M_CI,F_CI,Y_LT15_CI,Y_1564_CI,Y_GE65_CI,EMP_CI,NAT_CI,EU_OTH_CI,OTH_CI,SAME_CI,CHG_IN_CI,CHG_OUT_CI
 
-#GRD_ID,T,M,F,Y_LT15,Y_1564,Y_GE65,EMP,NAT,EU_OTH,OTH,SAME,CHG_IN,CHG_OUT,LAND_SURFACE,POPULATED,CONFIDENTIALSTATUS
+#GRD_ID,T,M,F,Y_LT15,Y_1564,Y_GE65,EMP,NAT,EU_OTH,OTH,SAME,CHG_IN,CHG_OUT,LAND_SURFACE,POPULATED,
 #transform
 
 if transform:
@@ -39,7 +41,7 @@ if transform:
             elif int(c[code]) == -9999: c[code] = 0
             elif int(c[code]) < 0: c[code] = 0
 
-        # ensures confidentialstatus is 0 or 1
+        # ensures confidentiality fields are set to 0 or 1
         for cc in [ "T_CI", "M_CI", "F_CI", "Y_LT15_CI", "Y_1564_CI", "Y_GE65_CI", "EMP_CI", "NAT_CI", "EU_OTH_CI", "OTH_CI", "SAME_CI", "CHG_IN_CI", "CHG_OUT_CI" ]:
             if c[cc] == "": c[cc] = 0
             elif c[cc] == "0": c[cc] = 0
