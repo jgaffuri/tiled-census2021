@@ -26,7 +26,7 @@ if transform:
         del c['fid']
         #del c['LAND_SURFACE']
         del c['POPULATED']
-        del c['COUNT']
+        #del c['COUNT']
 
         #extrac x,y
         gid = c['GRD_ID'].replace("CRS3035RES1000mN", "").split('E')
@@ -38,7 +38,7 @@ if transform:
         for code in ["T", "M","F","Y_LT15","Y_1564","Y_GE65","EMP","NAT","EU_OTH","OTH","SAME","CHG_IN","CHG_OUT"]:
             if c[code] == '': c[code] = 0
             elif int(c[code]) == -9999: c[code] = 0
-            elif int(c[code]) < 0: c[code] = 0
+            elif int(c[code]) < 0: print(code, c[code])  #c[code] = 0
 
         # ensures confidentiality fields are set to 0 or 1
         for cc in [ "T_CI", "M_CI", "F_CI", "Y_LT15_CI", "Y_1564_CI", "Y_GE65_CI", "EMP_CI", "NAT_CI", "EU_OTH_CI", "OTH_CI", "SAME_CI", "CHG_IN_CI", "CHG_OUT_CI" ]:
@@ -46,7 +46,7 @@ if transform:
             elif c[cc] == "0": c[cc] = 0
             #elif c[cc] == "1": c[cc] = 1
             elif c[cc] == "-9999": c[cc] = 1
-            elif c[cc] == "-9986": c[cc] = 1
+            #elif c[cc] == "-9986": c[cc] = 1
             else: print(c[cc])
 
         #check negative values
